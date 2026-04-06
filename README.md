@@ -103,6 +103,44 @@ Then open:
 http://<your-host>:8005
 ```
 
+## 4B. Run the Streamlit App
+
+If you want the Streamlit version instead of Flask:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+Default Streamlit port:
+
+```txt
+http://127.0.0.1:8501
+```
+
+## 4C. Streamlit Community Cloud Deployment
+
+Recommended repo files:
+
+- `streamlit_app.py`
+- `app.py`
+- `requirements.txt`
+- `packages.txt`
+- `README.md`
+
+Important deployment setting:
+
+- In Streamlit Community Cloud, set Python to `3.12` in **Advanced settings**
+
+Why:
+
+- Community Cloud defaults to Python `3.12`, but the version can be changed in the deploy dialog
+- If you deploy with a newer Python version, some pinned dependencies may fail to build
+
+System packages included in `packages.txt`:
+
+- `libgl1` for OpenCV / Docling compatibility on Linux
+- `tesseract-ocr`, `tesseract-ocr-eng`, `tesseract-ocr-chi-sim` for OCR support
+
 ## 5. Feature Overview
 
 ### Core Features
