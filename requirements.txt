@@ -1,0 +1,7 @@
+Flask==2.2.5
+PyMuPDF==1.27.2.2
+langextract==1.2.0
+docling==2.84.0
+Pillow==10.2.0
+pytesseract==0.3.13
+streamlit==1.44.1
