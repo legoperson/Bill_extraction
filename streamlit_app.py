@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-from app import DEFAULT_PROMPT, RUNS_DIR, run_extraction_job
+from app import DEFAULT_EXAMPLE_TEXT, DEFAULT_PROMPT, RUNS_DIR, run_extraction_job
 
 
 st.set_page_config(page_title="AI Bill Extraction", layout="wide")
@@ -52,7 +52,7 @@ uploaded_pdf = st.file_uploader("Upload a PDF bill", type=["pdf"])
 prompt = st.text_area("Extraction prompt", value=DEFAULT_PROMPT, height=180)
 example_text = st.text_area(
     "Few-shot examples",
-    value="",
+    value=DEFAULT_EXAMPLE_TEXT,
     height=140,
     disabled=not use_example,
     help="Use INPUT:/OUTPUT: pairs if you want few-shot examples to be parsed.",

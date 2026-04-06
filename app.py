@@ -53,6 +53,25 @@ DEFAULT_PROMPT = textwrap.dedent("""\
     - If a value can be normalized (for example `iso_date` or `currency/value`), place it in `attributes`.
     - Do not output content that cannot be located in the text.
 """)
+DEFAULT_EXAMPLE_TEXT = textwrap.dedent("""\
+    EXAMPLES:
+    INPUT:
+    "Invoice #8821
+    Billed To: Jane Q. Public
+    Address: 12/45 Ocean View Rd, Bondi Beach NSW 2026
+    Total: AUD 1,245.90
+    Notes: Thanks!"
+    OUTPUT:
+    {"total_bill_amount":"AUD 1,245.90","payer_name":"Jane Q. Public","payer_address":"12/45 Ocean View Rd, Bondi Beach NSW 2026"}
+
+    INPUT:
+    "Receipt
+    Customer: John Smith
+    Amount Due: —
+    Ship To: (none)"
+    OUTPUT:
+    {"total_bill_amount":null,"payer_name":"John Smith","payer_address":null}
+""")
 
 _INPUT_ANCHOR = re.compile(r'(?mi)^INPUT:\s*')
 _OUTPUT_ANCHOR = re.compile(r'(?mi)^OUTPUT:\s*')
@@ -552,7 +571,11 @@ def run_extraction_job(
 
 @app.get("/")
 def home():
-    return render_template("index.html", default_prompt=DEFAULT_PROMPT)
+    return render_template(
+        "index.html",
+        default_prompt=DEFAULT_PROMPT,
+        default_example_text=DEFAULT_EXAMPLE_TEXT,
+    )
 
 # ---------------- API routes (AJAX, no full page reload) ----------------
 
